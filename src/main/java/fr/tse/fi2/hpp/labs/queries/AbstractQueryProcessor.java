@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,6 +33,8 @@ import fr.tse.fi2.hpp.labs.dispatcher.StreamingDispatcher;
  * 
  */
 public abstract class AbstractQueryProcessor implements Runnable {
+	
+	protected ConcurrentLinkedQueue<Float> _queued;
 
 	final static Logger logger = LoggerFactory
 			.getLogger(AbstractQueryProcessor.class);
