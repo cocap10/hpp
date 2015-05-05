@@ -18,6 +18,7 @@ import fr.tse.fi2.hpp.labs.beans.GridPoint;
 import fr.tse.fi2.hpp.labs.beans.Route;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
 import fr.tse.fi2.hpp.labs.dispatcher.StreamingDispatcher;
+import fr.tse.fi2.hpp.labs.queries.impl.WriteResult;
 
 /**
  * Every query must extend this class that provides basic functionalities such
@@ -33,9 +34,6 @@ import fr.tse.fi2.hpp.labs.dispatcher.StreamingDispatcher;
  * 
  */
 public abstract class AbstractQueryProcessor implements Runnable {
-	
-	protected ConcurrentLinkedQueue<Float> _queued;
-
 	final static Logger logger = LoggerFactory
 			.getLogger(AbstractQueryProcessor.class);
 
@@ -56,6 +54,10 @@ public abstract class AbstractQueryProcessor implements Runnable {
 	 */
 	public final BlockingQueue<DebsRecord> eventqueue;
 	/**
+	 * queue of sum
+	 */
+	public BlockingQueue<String> sumqueue;
+	/**
 	 * Global measurement
 	 */
 	private final QueryProcessorMeasure measure;
@@ -72,6 +74,7 @@ public abstract class AbstractQueryProcessor implements Runnable {
 		this.measure = measure;
 		// Initialize queue
 		this.eventqueue = new LinkedBlockingQueue<>();
+		this.sumqueue = new LinkedBlockingQueue<>();
 
 		// Initialize writer
 		try {
@@ -81,6 +84,8 @@ public abstract class AbstractQueryProcessor implements Runnable {
 			logger.error("Cannot open output file for " + id, e);
 			System.exit(-1);
 		}
+		WriteResult wr = new WriteResult(id,sumqueue);
+		new Thread(wr).start();
 	}
 
 	public void setLatch(CountDownLatch latch) {

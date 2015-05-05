@@ -11,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
 import fr.tse.fi2.hpp.labs.dispatcher.LoadFirstDispatcher;
 import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
-import fr.tse.fi2.hpp.labs.queries.impl.IncrementalAverage;
-import fr.tse.fi2.hpp.labs.queries.impl.NaiveAverage;
-import fr.tse.fi2.hpp.labs.queries.impl.SimpleQuerySumEvent;
-import fr.tse.fi2.hpp.labs.queries.impl.lab1.SumQuery;
+import fr.tse.fi2.hpp.labs.queries.impl.lab4.RouteMembershipProcessor;
 
 /**
  * Main class of the program. Register your new queries here
@@ -35,17 +32,17 @@ public class MainNonStreaming {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		// Init query time measure
+		// Initialise query time measure
 		QueryProcessorMeasure measure = new QueryProcessorMeasure();
-		// Init dispatcher and load everything
+		// Initialise dispatcher and load everything
 		LoadFirstDispatcher dispatch = new LoadFirstDispatcher(
-				"src/main/resources/data/100k.csv");
+				"src/main/resources/data/1000Records.csv");
 		logger.info("Finished parsing");
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
-		processors.add(new NaiveAverage(measure));
-		processors.add(new IncrementalAverage(measure));
+		RouteMembershipProcessor rmp = new RouteMembershipProcessor(measure);
+		processors.add(rmp);
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);
@@ -73,6 +70,17 @@ public class MainNonStreaming {
 		// Output measure and ratio per query processor
 		measure.setProcessedRecords(dispatch.getRecords());
 		measure.outputMeasure();
+	
+		
+		try {
+			Thread.sleep(1000000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		rmp.printRoute(10);
+		int A=(rmp.lookupForRoute(-73.97114f, 40.75898f, -73.972206f, 40.752502f, "ED368552102F12EA252C63782F12CD4C"));
+		System.out.println(A);
 
 	}
 

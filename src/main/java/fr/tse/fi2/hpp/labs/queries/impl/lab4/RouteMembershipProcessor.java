@@ -28,7 +28,7 @@ public class RouteMembershipProcessor extends AbstractQueryProcessor {
 		return index;
 	}
 	
-	public int lookupForRoute(Float longDep, Float latDep, Float longArr, Float latArr, String HackLic)
+	public int lookupForRoute(float longDep, float latDep, float longArr, float latArr, String HackLic)
 	{
 		int nbTrouve=0;
 		for (int i=0; i<recs.size();i++) {
@@ -36,9 +36,8 @@ public class RouteMembershipProcessor extends AbstractQueryProcessor {
 			//System.out.println(i);
 			if (debsRecord.getPickup_longitude()==longDep && debsRecord.getPickup_latitude()==latDep
 					&& debsRecord.getDropoff_longitude()==longArr && debsRecord.getDropoff_latitude()==latArr
-					&& debsRecord.getHack_license()==HackLic)
+					&& debsRecord.getHack_license().equals(HackLic))
 			{
-				System.out.println("Trouvé! :-)");
 				nbTrouve++;
 			}
 		}

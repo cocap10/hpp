@@ -14,7 +14,6 @@ public class NaiveAverage extends AbstractQueryProcessor {
 	public NaiveAverage(QueryProcessorMeasure measure) {
 		super(measure);
 		numbers = new ArrayList<>();
-		_queued= new ConcurrentLinkedQueue<Float>();
 	}
 
 	@Override
@@ -25,7 +24,8 @@ public class NaiveAverage extends AbstractQueryProcessor {
 		for (Float f : numbers) {
 			sum += f;
 		}
-		_queued.add(sum);
+		
+		sumqueue.add(Float.toString(sum/numbers.size()));
 		
 		//Le pb est I/O Bound on pas de 27s à 9s d'exe en commentant la ligne suivante
 		//writeLine("current mean : " + (sum / numbers.size()));
