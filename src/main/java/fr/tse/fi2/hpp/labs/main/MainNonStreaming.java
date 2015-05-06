@@ -8,6 +8,7 @@ import java.util.concurrent.CountDownLatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.tse.fi2.hpp.labs.beans.DebsRecord;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
 import fr.tse.fi2.hpp.labs.dispatcher.LoadFirstDispatcher;
 import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
@@ -36,13 +37,12 @@ public class MainNonStreaming {
 		QueryProcessorMeasure measure = new QueryProcessorMeasure();
 		// Initialise dispatcher and load everything
 		LoadFirstDispatcher dispatch = new LoadFirstDispatcher(
-				"src/main/resources/data/1000Records.csv");
+				"src/main/resources/data/sorted_data.csv");
 		logger.info("Finished parsing");
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
-		RouteMembershipProcessor rmp = new RouteMembershipProcessor(measure);
-		processors.add(rmp);
+		processors.add(new RouteMembershipProcessor(measure));
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);
@@ -70,17 +70,12 @@ public class MainNonStreaming {
 		// Output measure and ratio per query processor
 		measure.setProcessedRecords(dispatch.getRecords());
 		measure.outputMeasure();
-	
+
 		
-		try {
-			Thread.sleep(1000000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		rmp.printRoute(10);
-		int A=(rmp.lookupForRoute(-73.97114f, 40.75898f, -73.972206f, 40.752502f, "ED368552102F12EA252C63782F12CD4C"));
-		System.out.println(A);
+
+		DebsRecord recordTest = RouteMembershipProcessor.getRec();
+		
+		System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
 
 	}
 

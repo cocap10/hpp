@@ -65,7 +65,6 @@ public class MainStreaming {
 		Thread t1 = new Thread(dispatch);
 		t1.setName("Dispatcher");
 		t1.start();
-		
 
 		// Wait for the latch
 		try {
