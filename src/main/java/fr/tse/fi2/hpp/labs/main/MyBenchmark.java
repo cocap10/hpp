@@ -2,14 +2,9 @@ package fr.tse.fi2.hpp.labs.main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -20,9 +15,6 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import org.openjdk.jmh.annotations.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,15 +99,6 @@ public class MyBenchmark {
 		System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
 	}
 
-	//    @Benchmark
-	//    public float testMethod2() {
-	//       long sum=0L;
-	//       for(Integer integer : liste2){
-	//    	   sum += integer;
-	//       }
-	//       float mean = sum / n;
-	//       return mean;
-	//    }
 
 	public static void main(String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder()
