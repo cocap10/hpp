@@ -2,6 +2,7 @@ package fr.tse.fi2.hpp.labs.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
@@ -15,6 +16,7 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.CountDownLatch;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,8 +97,9 @@ public class MyBenchmark {
 
 
 	@Benchmark
-	public void testMethod1() {
+	public void testMethod1() throws InterruptedException {
 		System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
+		Thread.sleep(10000);
 	}
 
 
