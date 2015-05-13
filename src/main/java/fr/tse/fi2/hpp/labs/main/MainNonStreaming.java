@@ -1,6 +1,7 @@
 package fr.tse.fi2.hpp.labs.main;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -12,6 +13,7 @@ import fr.tse.fi2.hpp.labs.beans.DebsRecord;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
 import fr.tse.fi2.hpp.labs.dispatcher.LoadFirstDispatcher;
 import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
+import fr.tse.fi2.hpp.labs.queries.impl.lab4.FiltreBloom;
 import fr.tse.fi2.hpp.labs.queries.impl.lab4.RouteMembershipProcessor;
 
 /**
@@ -31,18 +33,20 @@ public class MainNonStreaming {
 	/**
 	 * @param args
 	 * @throws IOException
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public static void main(String[] args) throws IOException {
-		// Initialise query time measure
+	public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+		// Initialize query time measure
 		QueryProcessorMeasure measure = new QueryProcessorMeasure();
-		// Initialise dispatcher and load everything
+		// Initialize dispatcher and load everything
 		LoadFirstDispatcher dispatch = new LoadFirstDispatcher(
-				"src/main/resources/data/sorted_data.csv");
+				"src/main/resources/data/1000Records.csv");
 		logger.info("Finished parsing");
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
-		processors.add(new RouteMembershipProcessor(measure));
+		FiltreBloom fb= new FiltreBloom(measure, 1000, 0.001);
+		processors.add(fb);
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);
@@ -72,10 +76,12 @@ public class MainNonStreaming {
 		measure.outputMeasure();
 
 		
-
-		DebsRecord recordTest = RouteMembershipProcessor.getRec();
+		System.out.println(fb);
+		//System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
+		//System.out.println(recordTest.getHack_license());
 		
-		System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
+		//System.out.println("HASH : " +r);
+		//System.out.println("HASH SIZE : "+r.length+"bytes(octets)");
 
 	}
 
