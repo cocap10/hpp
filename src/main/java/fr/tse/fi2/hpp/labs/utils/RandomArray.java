@@ -1,4 +1,4 @@
-package fr.tse.fi2.hpp.labs.test;
+package fr.tse.fi2.hpp.labs.utils;
 
 
 import java.util.Random;

@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import fr.tse.fi2.hpp.labs.utils.RandomArray;
 import fr.tse.fi2.hpp.labs.utils.SimpleMergeSort;
 
 public class TestMergeSort {
