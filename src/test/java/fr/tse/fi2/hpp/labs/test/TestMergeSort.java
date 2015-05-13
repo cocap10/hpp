@@ -15,13 +15,13 @@ public class TestMergeSort {
 	public void test() {
 		//fail("Not yet implemented");
 
-		int[] tab1=new RandomArray(10).nextArray();
+		int[] tab1=new RandomArray(10000000).nextArray();
 		int[] tab2=tab1;
-		System.out.println(Arrays.toString(tab1)+"   "+Arrays.toString(tab2));
+		//System.out.println(Arrays.toString(tab1)+"   "+Arrays.toString(tab2));
 		SimpleMergeSort.sort(tab1);
 		Arrays.sort(tab2);
 		assertArrayEquals(tab1, tab2);
-		System.out.println(Arrays.toString(tab1)+"   "+Arrays.toString(tab2));
+		//System.out.println(Arrays.toString(tab1)+"   "+Arrays.toString(tab2));
 
 
 

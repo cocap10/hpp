@@ -1,11 +1,4 @@
 package fr.tse.fi2.hpp.labs.utils;
-
-import java.lang.reflect.Array;
-
-import org.junit.internal.InexactComparisonCriteria;
-
-import cern.colt.Arrays;
-
 public class SimpleMergeSort {
 	public SimpleMergeSort() {
 		// TODO Auto-generated constructor stub

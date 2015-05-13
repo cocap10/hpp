@@ -12,7 +12,7 @@ public class RandomArray {
 	public int[] nextArray() {
 		// TODO Auto-generated method stub
 		for (int idx = 0; idx < array.length; ++idx) 
-            array[idx] = random.nextInt()%10;
+            array[idx] = random.nextInt()%1000;
         return array;
 	}
 }
