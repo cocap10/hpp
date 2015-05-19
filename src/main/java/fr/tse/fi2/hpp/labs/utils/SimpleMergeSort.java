@@ -54,7 +54,7 @@ public class SimpleMergeSort {
 
 	}
 
-	private static int[] fusion(int[] tab1,int [] tab2, int[] rst)
+	public static int[] fusion(int[] tab1,int [] tab2, int[] rst)
 	{
 		int k=0;
 		int index1=0;
