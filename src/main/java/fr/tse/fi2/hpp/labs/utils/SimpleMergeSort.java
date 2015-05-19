@@ -8,7 +8,7 @@ public class SimpleMergeSort {
 		if (tab.length==1)
 			return;
 
-		if (tab.length==2)
+		/*if (tab.length==2)
 		{
 			if (tab[0]>tab[1])
 			{
@@ -17,7 +17,7 @@ public class SimpleMergeSort {
 				tab[1]=permut;
 			}
 			return;
-		}
+		}*/
 		if (tab.length<20)
 		{
 			for(int i=1;i<tab.length;i++)
