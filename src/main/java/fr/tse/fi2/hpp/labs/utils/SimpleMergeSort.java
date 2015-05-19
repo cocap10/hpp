@@ -18,6 +18,30 @@ public class SimpleMergeSort {
 			}
 			return;
 		}
+		if (tab.length<20)
+		{
+			for(int i=1;i<tab.length;i++)
+			{
+				int memory=tab[i];
+				int compt=i-1;
+				boolean marqueur;
+				do
+				{
+					marqueur=false;
+					if (tab[compt]>memory)
+					{
+						tab[compt+1]=tab[compt];
+						compt--;
+						marqueur=true;
+					}
+					if (compt<0) marqueur=false;
+				}
+				while(marqueur);
+				tab[compt+1]=memory;
+			}
+
+			return;
+		}
 		int demiTaille=tab.length/2;
 		int[] buf1 = new int[demiTaille];
 		int[] buf2 = new int[tab.length-demiTaille];
@@ -43,7 +67,7 @@ public class SimpleMergeSort {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+
 				break;
 			}
 			if (index2==tab2.length)
@@ -53,10 +77,10 @@ public class SimpleMergeSort {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+
 				break;
 			}
-			
+
 			if(tab1[index1]<tab2[index2])
 			{
 				rst[k]=tab1[index1];
