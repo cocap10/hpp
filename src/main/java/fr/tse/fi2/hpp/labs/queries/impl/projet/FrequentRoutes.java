@@ -52,13 +52,15 @@ public class FrequentRoutes extends AbstractQueryProcessor {
 			top10.clear();
 			for (DebsRecord cursRecord : maFenetre) {
 				Route cursRoute= convertRecordToRoute(cursRecord);
-				top10.add(cursRoute,1);
+				top10.add(cursRoute);
 			}
-			for (Route route : top10) {
-				if (top10.count(route)>1)
-					System.out.println(top10.count(route));
+			System.out.println("Nouvelle Fenetre:");
+			for (Route route : Multisets.copyHighestCountFirst(top10).elementSet()) {
+
+				System.out.println(route+" : "+top10.count(route));
 			}
 			
+
 		}
 
 	}

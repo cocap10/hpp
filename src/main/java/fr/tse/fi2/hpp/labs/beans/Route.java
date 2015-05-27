@@ -87,9 +87,41 @@ public class Route {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String rtn = "Pickup (X,Y) : "+pickup.getX()+", "+pickup.getY()+"\nDropoff (X,Y) : "+dropoff.getX()+", "+dropoff.getY();
-		
+		String rtn = "Pickup (X,Y) : "+pickup.getX()+", "+pickup.getY()+"\tDropoff (X,Y) : "+dropoff.getX()+", "+dropoff.getY();
+
 		return rtn;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dropoff == null) ? 0 : dropoff.hashCode());
+		result = prime * result + ((pickup == null) ? 0 : pickup.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Route other = (Route) obj;
+		if (dropoff == null) {
+			if (other.dropoff != null)
+				return false;
+		} else if (!dropoff.equals(other.dropoff))
+			return false;
+		if (pickup == null) {
+			if (other.pickup != null)
+				return false;
+		} else if (!pickup.equals(other.pickup))
+			return false;
+		return true;
+	}
+	
+	
 
 }
