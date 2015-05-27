@@ -15,6 +15,7 @@ import fr.tse.fi2.hpp.labs.dispatcher.LoadFirstDispatcher;
 import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
 import fr.tse.fi2.hpp.labs.queries.impl.lab4.FiltreBloom;
 import fr.tse.fi2.hpp.labs.queries.impl.lab4.RouteMembershipProcessor;
+import fr.tse.fi2.hpp.labs.queries.impl.projet.FrequentRoutes;
 
 /**
  * Main class of the program. Register your new queries here
@@ -40,13 +41,13 @@ public class MainNonStreaming {
 		QueryProcessorMeasure measure = new QueryProcessorMeasure();
 		// Initialize dispatcher and load everything
 		LoadFirstDispatcher dispatch = new LoadFirstDispatcher(
-				"src/main/resources/data/1000Records.csv");
+				"src/main/resources/data/sorted_data.csv");
 		logger.info("Finished parsing");
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
-		FiltreBloom fb= new FiltreBloom(measure, 1000, 0.001);
-		processors.add(fb);
+		//FiltreBloom fb= new FiltreBloom(measure, 1000, 0.001);
+		processors.add(new FrequentRoutes(measure));
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);
@@ -76,7 +77,7 @@ public class MainNonStreaming {
 		measure.outputMeasure();
 
 		
-		System.out.println(fb);
+		//System.out.println(fb);
 		//System.out.println("Route find : " + RouteMembershipProcessor.checkroute(recordTest));
 		//System.out.println(recordTest.getHack_license());
 		

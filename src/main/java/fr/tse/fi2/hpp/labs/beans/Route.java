@@ -84,5 +84,12 @@ public class Route {
 	private boolean valid(int x, int gridsize) {
 		return x > 0 && x <= gridsize;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String rtn = "Pickup (X,Y) : "+pickup.getX()+", "+pickup.getY()+"\nDropoff (X,Y) : "+dropoff.getX()+", "+dropoff.getY();
+		
+		return rtn;
+	}
 
 }
