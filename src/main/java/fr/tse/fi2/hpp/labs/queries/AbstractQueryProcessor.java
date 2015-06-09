@@ -128,7 +128,7 @@ public abstract class AbstractQueryProcessor implements Runnable {
 	 * 
 	 * @param record
 	 *            the record to process
-	 * @return the route in a 600*600 grid
+	 * @return the route in a 300*300 grid
 	 */
 	protected Route convertRecordToRoute(DebsRecord record) {
 		// Convert pickup coordinates into cell
@@ -139,6 +139,24 @@ public abstract class AbstractQueryProcessor implements Runnable {
 		float lat2 = record.getDropoff_latitude();
 		float long2 = record.getDropoff_longitude();
 		GridPoint dropoff = convert(lat2, long2);
+		return new Route(pickup, dropoff);
+	}
+	
+	/**
+	 * 
+	 * @param record
+	 *            the record to process
+	 * @return the route in a 600*600 grid
+	 */
+	protected Route convertRecordToRoute2(DebsRecord record) {
+		// Convert pickup coordinates into cell
+		float lat1 = record.getPickup_latitude();
+		float long1 = record.getPickup_longitude();
+		GridPoint pickup = convert2(lat1, long1);
+		// Convert pickup coordinates into cell
+		float lat2 = record.getDropoff_latitude();
+		float long2 = record.getDropoff_longitude();
+		GridPoint dropoff = convert2(lat2, long2);
 		return new Route(pickup, dropoff);
 	}
 
@@ -153,6 +171,16 @@ public abstract class AbstractQueryProcessor implements Runnable {
 	}
 
 	/**
+	 * 
+	 * @param lat1
+	 * @param long1
+	 * @return The lat/long converted into grid coordinates
+	 */
+	private GridPoint convert2(float lat1, float long1) {
+		return new GridPoint(cellX2(long1), cellY2(lat1));
+	}
+	
+	/**
 	 * Provided by Syed and Abderrahmen
 	 * 
 	 * @param x
@@ -165,7 +193,25 @@ public abstract class AbstractQueryProcessor implements Runnable {
 		double delta_x = 0.005986;// / 2;
 
 		// double cell_x;
-		Double cell_x = 1 + Math.floor(((x - x_0) / delta_x))+0.5;//+0.5
+		Double cell_x = 1 + Math.floor(((x - x_0) / delta_x))+0.5;
+
+		return cell_x.intValue();
+	}
+	
+	/**
+	 * Provided by Syed and Abderrahmen
+	 * 
+	 * @param x
+	 * @return
+	 */
+	private int cellX2(float x) {
+
+		// double x=0;
+		double x_0 = -74.913585;
+		double delta_x = 0.005986 / 2;
+
+		// double cell_x;
+		Double cell_x = 1 + Math.floor(((x - x_0) / delta_x))+0.5;
 
 		return cell_x.intValue();
 	}
@@ -181,7 +227,24 @@ public abstract class AbstractQueryProcessor implements Runnable {
 		double y_0 = 41.474937;
 		double delta_y = 0.004491556 ;// 2;
 
-		Double cell_y = 1 + Math.floor(((y_0 - y) / delta_y))+0.5;//+0.5
+		Double cell_y = 1 + Math.floor(((y_0 - y) / delta_y))+0.5;
+
+		return cell_y.intValue();
+
+	}
+	
+	/**
+	 * Provided by Syed and Abderrahmen
+	 * 
+	 * @param y
+	 * @return
+	 */
+	private int cellY2(double y) {
+
+		double y_0 = 41.474937;
+		double delta_y = 0.004491556 / 2;
+
+		Double cell_y = 1 + Math.floor(((y_0 - y) / delta_y))+0.5;
 
 		return cell_y.intValue();
 
