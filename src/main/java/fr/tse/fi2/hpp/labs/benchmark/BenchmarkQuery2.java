@@ -41,7 +41,7 @@ public class BenchmarkQuery2 {
 		measure = new QueryProcessorMeasure();
 		// Init dispatcher
 		dispatch = new StreamingDispatcher(
-				"src/main/resources/data/1000Records.csv");
+				"src/main/resources/data/100k.csv");
 
 		// Query processors
 		processors = new ArrayList<>();
