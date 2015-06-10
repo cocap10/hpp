@@ -1,4 +1,4 @@
-package fr.tse.fi2.hpp.labs.main;
+package fr.tse.fi2.hpp.labs.benchmark;
 
 public class MainTestTime {
 	public static void main(String[] args) {

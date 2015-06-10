@@ -26,13 +26,13 @@ public class ZoneRentable extends AbstractQueryProcessor {
 	private long temps2;
 	private long delay;
 	private String result;
-	private static HashMap<GridPoint, Float> mediane;
-	private static Multiset<GridPoint> arriveeFrequentes;
-	private static HashMap<GridPoint, Float> profits; 
-	private static HashMap<GridPoint, Float> rentabilites;
-	private static ValueComparator bvc;
-	private static TreeMap<GridPoint, Float> rentabilitesTrie;
-	private static Multiset<GridPoint> nbGp;
+	private  HashMap<GridPoint, Float> mediane;
+	private  Multiset<GridPoint> arriveeFrequentes;
+	private  HashMap<GridPoint, Float> profits; 
+	private  HashMap<GridPoint, Float> rentabilites;
+	private  ValueComparator bvc;
+	private  TreeMap<GridPoint, Float> rentabilitesTrie;
+	private  Multiset<GridPoint> nbGp;
 
 	public ZoneRentable(QueryProcessorMeasure measure) {
 		super(measure);

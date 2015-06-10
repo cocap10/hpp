@@ -42,13 +42,13 @@ public class MainNonStreaming {
 		QueryProcessorMeasure measure = new QueryProcessorMeasure();
 		// Initialize dispatcher and load everything
 		LoadFirstDispatcher dispatch = new LoadFirstDispatcher(
-				"src/main/resources/data/1000Records.csv");
+				"src/main/resources/data/sorted_data.csv");
 		logger.info("Finished parsing");
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
 		//FiltreBloom fb= new FiltreBloom(measure, 1000, 0.001);
-		//processors.add(new FrequentRoutes(measure));
+		processors.add(new FrequentRoutes(measure));
 		processors.add(new ZoneRentable(measure));
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
