@@ -45,7 +45,7 @@ public abstract class AbstractDispatcher implements Runnable {
 	 * @param line
 	 * @return the {@link DebsRecord} of this line
 	 */
-	protected DebsRecord process(String line) {
+	public DebsRecord process(String line) {
 		String[] split = line.split(",");
 		if (split.length != 17) {
 			logger.error("Record does not match the required number of elements:\n"
@@ -66,7 +66,7 @@ public abstract class AbstractDispatcher implements Runnable {
 					Float.valueOf(split[16]), false);
 			return record;
 		} catch (NumberFormatException | ParseException e) {
-			logger.error("Unable to parse date for " + line);
+			logger.error("Unable to parse date for " + line + " reason : "+e.getMessage());
 		}
 		return null;
 
