@@ -1,6 +1,8 @@
 package fr.tse.fi2.hpp.labs.beans;
 
-public class GridPoint {
+import java.util.Comparator;
+
+public class GridPoint implements Comparable<GridPoint>{
 	/**
 	 * Coordinates on the Grid
 	 */
@@ -51,6 +53,21 @@ public class GridPoint {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String rtn=this.x+"."+this.y;
+		return rtn;
+	}
+
+	@Override
+	public int compareTo(GridPoint o) {
+		int num1 = (this.y-1)*600+this.x;//x_max=300 dans query 1
+		int num2 = (o.getY()-1)*600+o.getX();//x_max=300 dans query 1
+		
+		return Integer.compare(num1, num2);
 	}
 
 	

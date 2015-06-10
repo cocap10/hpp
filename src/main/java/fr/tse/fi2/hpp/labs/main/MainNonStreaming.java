@@ -16,6 +16,7 @@ import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
 import fr.tse.fi2.hpp.labs.queries.impl.lab4.FiltreBloom;
 import fr.tse.fi2.hpp.labs.queries.impl.lab4.RouteMembershipProcessor;
 import fr.tse.fi2.hpp.labs.queries.impl.projet.FrequentRoutes;
+import fr.tse.fi2.hpp.labs.queries.impl.projet.ZoneRentable;
 
 /**
  * Main class of the program. Register your new queries here
@@ -47,7 +48,8 @@ public class MainNonStreaming {
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
 		// Add you query processor here
 		//FiltreBloom fb= new FiltreBloom(measure, 1000, 0.001);
-		processors.add(new FrequentRoutes(measure));
+		//processors.add(new FrequentRoutes(measure));
+		processors.add(new ZoneRentable(measure));
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);

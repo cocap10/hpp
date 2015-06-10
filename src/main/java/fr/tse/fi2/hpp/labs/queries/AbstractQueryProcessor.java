@@ -241,7 +241,7 @@ public abstract class AbstractQueryProcessor implements Runnable {
 	 */
 	private int cellY2(double y) {
 
-		double y_0 = 41.474937;
+		double y_0 = 41.47493; 
 		double delta_y = 0.004491556 / 2;
 
 		Double cell_y = 1 + Math.floor(((y_0 - y) / delta_y))+0.5;
